@@ -1,0 +1,48 @@
+/* Neo Kinpaku tokens — зеркало DESIGN.md. Источник правды: DESIGN.md */
+:root {
+  /* Brand anchors */
+  --ks-kinpaku: oklch(84% 0.19 80.46);
+  --ks-patina: oklch(70% 0.12 188);
+
+  /* Surfaces */
+  --ks-lacquer: oklch(7% 0.006 95);
+  --ks-lacquer-deep: oklch(4% 0.004 95);
+  --ks-raised: oklch(11% 0.006 95);
+  --ks-graphite: oklch(15% 0.008 95);
+  --ks-graphite-2: oklch(19% 0.008 95);
+
+  /* Text */
+  --ks-champagne: oklch(91% 0 0);
+  --ks-text: oklch(88% 0 0);
+  --ks-text-muted: oklch(72% 0 0);
+  --ks-text-faint: oklch(62% 0 0);
+  --ks-text-mute-deep: oklch(52% 0 0);
+
+  /* Gold ramp */
+  --ks-kinpaku-pale: oklch(86% 0.07 84);
+  --ks-kinpaku-rich: oklch(77% 0.13 82);
+  --ks-kinpaku-deep: oklch(61% 0.085 78);
+  --ks-rule: oklch(78% 0 0 / 0.16);
+  --ks-rule-strong: oklch(74% 0.09 82 / 0.6);
+
+  /* Patina ramp */
+  --ks-patina-pale: oklch(82% 0.07 188);
+  --ks-patina-deep: oklch(49% 0.08 188);
+
+  /* State */
+  --ks-vermilion: oklch(58% 0.15 35);
+
+  /* Type */
+  --ks-font-display: 'Alumni Sans Pinstripe', 'Albert Sans', Arial, sans-serif;
+  --ks-font-wordmark: 'Alumni Sans', 'Alumni Sans Pinstripe', 'Albert Sans', Arial, sans-serif;
+  --ks-font-body: 'Albert Sans', 'Avenir Next', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --ks-font-mono: 'Roboto Mono', SFMono-Regular, Consolas, monospace;
+
+  --ks-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Radii */
+  --ks-r-xs: 2px;
+  --ks-r-sm: 4px;
+  --ks-r-md: 6px;
+  --ks-r-lg: 8px;
+}
