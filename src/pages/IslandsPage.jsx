@@ -110,26 +110,6 @@ export default function IslandsPage() {
               </div>
             </div>
           ))}
-          {/* Остров Дружбы (поскольку его нет в БД, добавим вручную в легенду) */}
-          <div style={{ padding: 12, border: '1px solid var(--ks-rule)', borderRadius: 'var(--ks-r-sm)', background: 'var(--ks-lacquer-light)', opacity: 0.85 }}>
-            <h4 style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--ks-champagne)', margin: 0, fontSize: '0.98rem' }}>
-              <span>Остров Дружбы</span>
-              <span className="ks-badge" style={{ fontSize: '0.7rem', padding: '1px 5px', color: 'var(--ks-patina)' }}>Скоро</span>
-            </h4>
-            <p style={{ fontSize: '0.85rem', color: 'var(--ks-text-muted)', margin: '6px 0 10px', lineHeight: 1.4 }}>
-              Социальная сфера и общение. Будет развиваться при поддержке друзей и прохождении совместных испытаний.
-            </p>
-            <div style={{ fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <span style={{ color: 'var(--ks-text-faint)' }}>Условие:</span>
-                <span style={{ color: 'var(--ks-champagne)', textAlign: 'right', marginLeft: 8 }}>Поделиться прогрессом с другом</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <span style={{ color: 'var(--ks-text-faint)' }}>Награда:</span>
-                <span style={{ color: 'var(--ks-patina)', textAlign: 'right', marginLeft: 8 }}>Совместные челленджи</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
