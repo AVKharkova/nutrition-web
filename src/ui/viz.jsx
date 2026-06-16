@@ -84,13 +84,49 @@ export function WeekBars({ days, target, height = 170 }) {
 }
 
 /* Остров: лаконичная геометрия — плита-остров на лаковом море */
-const ISLAND_META = {
-  food:      { title: 'Остров Питания',    glyph: 'M-22 6 L0 -16 L22 6 Z' },
-  movement:  { title: 'Остров Движения',   glyph: 'M-22 8 C-10 -14, 10 -14, 22 8' },
-  hydration: { title: 'Остров Воды',       glyph: 'M0 -16 C12 0, 10 10, 0 10 C-10 10, -12 0, 0 -16 Z' },
-  honesty:   { title: 'Остров Честности',  glyph: 'M-16 -10 L16 -10 L16 10 L-16 10 Z' },
-  balance:   { title: 'Остров Баланса',    glyph: 'M-20 0 L0 -12 L20 0 L0 12 Z' },
-  sleep:     { title: 'Остров Сна',        glyph: 'M-14 -10 L14 -10 L-14 10 L14 10' },
+export const ISLAND_META = {
+  food: { 
+    title: 'Остров Питания', 
+    glyph: 'M-22 6 L0 -16 L22 6 Z',
+    unlock: '7 дней подряд записывать еду',
+    reward: 'Доступ к рецептам от бота',
+    desc: 'Олицетворяет ваши отношения с едой. Строится при регулярном ведении дневника.'
+  },
+  movement: { 
+    title: 'Остров Движения', 
+    glyph: 'M-22 8 C-10 -14, 10 -14, 22 8',
+    unlock: '10 микро-тренировок',
+    reward: 'Персональные планы на 5 минут',
+    desc: 'Ваша физическая активность. Гнев дает энергию для тренировок и прогулок.'
+  },
+  hydration: { 
+    title: 'Остров Воды', 
+    glyph: 'M0 -16 C12 0, 10 10, 0 10 C-10 10, -12 0, 0 -16 Z',
+    unlock: '7 дней водного баланса',
+    reward: 'Увеличение уровня Радости',
+    desc: 'Чистота и гидратация вашего тела. Помогает держать уровень Радости высоким.'
+  },
+  honesty: { 
+    title: 'Остров Честности', 
+    glyph: 'M-16 -10 L16 -10 L16 10 L-16 10 Z',
+    unlock: '5 честных срывов без оправданий',
+    reward: 'Доступ к глубокой аналитике',
+    desc: 'Самый сложный остров. Печаль растет, когда вы честно признаете свои слабости.'
+  },
+  balance: { 
+    title: 'Остров Баланса', 
+    glyph: 'M-20 0 L0 -12 L20 0 L0 12 Z',
+    unlock: 'Все эмоции на уровне 50+',
+    reward: 'Титул «Дирижёр пульта»',
+    desc: 'Гармония вашего внутреннего мира. Требует сбалансированности всех 5 эмоций.'
+  },
+  sleep: { 
+    title: 'Остров Сна', 
+    glyph: 'M-14 -10 L14 -10 L-14 10 L14 10',
+    unlock: '14 дней отметок самочувствия',
+    reward: 'Советы по режиму сна',
+    desc: 'Остров спокойствия и восстановления. Контролируется вашим Страхом.'
+  },
 };
 
 const STATUS_RU = {
@@ -118,34 +154,48 @@ export function IslandTile({ island }) {
   const valLabel = island.status === 'growing' || island.status === 'locked' ? 'прогресс' : 'здоровье';
   const barColor = island.status === 'active' ? GOLD : island.status === 'crumbling' ? 'var(--ks-vermilion)' : PATINA;
   return (
-    <div className="ks-bento-tile island-tile">
-      <svg viewBox="0 0 200 110">
-        {/* море */}
-        <rect x="0" y="0" width="200" height="110" fill="var(--ks-lacquer-deep)" />
-        <line x1="0" y1="86" x2="200" y2="86" stroke="var(--ks-rule)" strokeWidth="1" />
-        <line x1="0" y1="94" x2="200" y2="94" stroke="var(--ks-rule)" strokeWidth="0.5" />
-        {/* плита острова */}
-        <g opacity={col.dim}>
-          <polygon points="40,86 70,52 130,52 160,86" fill={col.land} opacity="0.18" />
-          <polygon points="40,86 70,52 130,52 160,86" fill="none" stroke={col.edge} strokeWidth="1.4" />
-          {/* глиф */}
-          <g transform="translate(100 38)">
-            <path d={meta.glyph} fill="none" stroke={col.land} strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round" />
+    <div className="ks-bento-tile island-tile" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <svg viewBox="0 0 200 110">
+          {/* море */}
+          <rect x="0" y="0" width="200" height="110" fill="var(--ks-lacquer-deep)" />
+          <line x1="0" y1="86" x2="200" y2="86" stroke="var(--ks-rule)" strokeWidth="1" />
+          <line x1="0" y1="94" x2="200" y2="94" stroke="var(--ks-rule)" strokeWidth="0.5" />
+          {/* плита острова */}
+          <g opacity={col.dim}>
+            <polygon points="40,86 70,52 130,52 160,86" fill={col.land} opacity="0.18" />
+            <polygon points="40,86 70,52 130,52 160,86" fill="none" stroke={col.edge} strokeWidth="1.4" />
+            {/* глиф */}
+            <g transform="translate(100 38)">
+              <path d={meta.glyph} fill="none" stroke={col.land} strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round" />
+            </g>
+            {/* золотой шов при active */}
+            {island.status === 'active' && (
+              <line x1="40" y1="86" x2="160" y2="86" stroke={GOLD} strokeWidth="2" />
+            )}
           </g>
-          {/* золотой шов при active */}
-          {island.status === 'active' && (
-            <line x1="40" y1="86" x2="160" y2="86" stroke={GOLD} strokeWidth="2" />
-          )}
-        </g>
-      </svg>
-      <h3 style={{ marginTop: 12, fontSize: '1.02rem' }}>{meta.title}</h3>
-      <div className="island-meta">
-        <span className="ks-mono">{STATUS_RU[island.status] || island.status}</span>
-        <span className="ks-mono" style={{ color: 'var(--ks-text-muted)' }}>{valLabel} {Math.round(val)}%</span>
+        </svg>
+        <h3 style={{ marginTop: 12, fontSize: '1.02rem' }}>{meta.title}</h3>
+        <div className="island-meta">
+          <span className="ks-mono">{STATUS_RU[island.status] || island.status}</span>
+          <span className="ks-mono" style={{ color: 'var(--ks-text-muted)' }}>{valLabel} {Math.round(val)}%</span>
+        </div>
+        <div className="progress-rail">
+          <div className="progress-fill" style={{ width: `${Math.min(100, val)}%`, background: barColor }} />
+        </div>
       </div>
-      <div className="progress-rail">
-        <div className="progress-fill" style={{ width: `${Math.min(100, val)}%`, background: barColor }} />
-      </div>
+      {meta.unlock && (
+        <div style={{ marginTop: 10, fontSize: '0.8rem', borderTop: '1px solid var(--ks-rule)', paddingTop: 8, display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+            <span style={{ color: 'var(--ks-text-faint)' }}>Цель:</span>
+            <span style={{ color: 'var(--ks-champagne)', textAlign: 'right', marginLeft: 8 }}>{meta.unlock}</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+            <span style={{ color: 'var(--ks-text-faint)' }}>Награда:</span>
+            <span style={{ color: 'var(--ks-patina)', textAlign: 'right', marginLeft: 8 }}>{meta.reward}</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

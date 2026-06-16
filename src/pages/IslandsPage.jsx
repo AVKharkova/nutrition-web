@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../App';
 import { fetchIslands, fetchEmotions, fetchMemories } from '../lib/api';
-import { IslandTile, EmotionConsole, levelName } from '../ui/viz';
+import { IslandTile, EmotionConsole, levelName, ISLAND_META } from '../ui/viz';
+
 
 const MEMORY_COLORS = {
   yellow: 'var(--ks-kinpaku)', green: 'var(--ks-patina)',
@@ -80,6 +81,54 @@ export default function IslandsPage() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Справочник островов */}
+      <div className="ks-bento-tile ks-bento-tile--span-12" style={{ marginTop: 16 }}>
+        <span className="ks-eyebrow">Справочник</span>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: 12 }}>💡 Как устроены Острова Личности</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+          {Object.entries(ISLAND_META).map(([key, meta]) => (
+            <div key={key} style={{ padding: 12, border: '1px solid var(--ks-rule)', borderRadius: 'var(--ks-r-sm)', background: 'var(--ks-lacquer-light)' }}>
+              <h4 style={{ color: 'var(--ks-champagne)', margin: 0, fontSize: '0.98rem' }}>
+                {meta.title}
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--ks-text-muted)', margin: '6px 0 10px', lineHeight: 1.4 }}>
+                {meta.desc}
+              </p>
+              <div style={{ fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <span style={{ color: 'var(--ks-text-faint)' }}>Условие:</span>
+                  <span style={{ color: 'var(--ks-champagne)', textAlign: 'right', marginLeft: 8 }}>{meta.unlock}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <span style={{ color: 'var(--ks-text-faint)' }}>Награда:</span>
+                  <span style={{ color: 'var(--ks-patina)', textAlign: 'right', marginLeft: 8 }}>{meta.reward}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* Остров Дружбы (поскольку его нет в БД, добавим вручную в легенду) */}
+          <div style={{ padding: 12, border: '1px solid var(--ks-rule)', borderRadius: 'var(--ks-r-sm)', background: 'var(--ks-lacquer-light)', opacity: 0.85 }}>
+            <h4 style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--ks-champagne)', margin: 0, fontSize: '0.98rem' }}>
+              <span>Остров Дружбы</span>
+              <span className="ks-badge" style={{ fontSize: '0.7rem', padding: '1px 5px', color: 'var(--ks-patina)' }}>Скоро</span>
+            </h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--ks-text-muted)', margin: '6px 0 10px', lineHeight: 1.4 }}>
+              Социальная сфера и общение. Будет развиваться при поддержке друзей и прохождении совместных испытаний.
+            </p>
+            <div style={{ fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <span style={{ color: 'var(--ks-text-faint)' }}>Условие:</span>
+                <span style={{ color: 'var(--ks-champagne)', textAlign: 'right', marginLeft: 8 }}>Поделиться прогрессом с другом</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <span style={{ color: 'var(--ks-text-faint)' }}>Награда:</span>
+                <span style={{ color: 'var(--ks-patina)', textAlign: 'right', marginLeft: 8 }}>Совместные челленджи</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
